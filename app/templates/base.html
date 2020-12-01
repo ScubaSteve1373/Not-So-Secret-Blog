@@ -1,0 +1,53 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+
+    {% if title %}
+    <title class="text-center">{{ title }} - What's Happening In & Out of IC?</title>
+    {% else %}
+    <title class="text-center">What's Happening In & Out of IC?</title>
+    {% endif %}
+
+{% endblock %}
+
+{% block navbar %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/home"><b>Campus Life:</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-link active" href="/Events">Local Artists<span class="sr-only">(current)</span></a>
+            {% if current_user.is_anonymous %}
+            <a class="nav-link" href="/login">Login</a>
+            {% else %}
+                <a class="nav-link" href="/WhatsTheirRate">WhatsTheirRate</a>
+                <a class="nav-link" href="/Blog">Blog</a>
+                <a class="nav-link" href="/Snacking&Slacking">Snacking&Slacking</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+
+</nav>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% with messages = get_flash_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li>
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+        {% block app_content %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

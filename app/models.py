@@ -1,6 +1,7 @@
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     userName = db.Column(db.VARCHAR, unique=True)
@@ -17,6 +18,7 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -36,6 +38,7 @@ class UserToEvent(db.Model):
     def __repr__(self):
         return '{}'.format(self.name)
 
+
 class Blog(db.model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     body = db.Column(db.String(360), index=True)
@@ -44,6 +47,7 @@ class Blog(db.model):
 
     def __repr__(self):
         return '{}'.format(self.name)
+
 
 class DiningHall(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -64,12 +68,14 @@ class SnackingSlacking(db.Model):
     def __repr__(self):
         return '{}'.format(self.name)
 
+
 class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(64))
 
     def __repr__(self):
         return '{}'.format(self.name)
+
 
 class Professor(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
