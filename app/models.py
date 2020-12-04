@@ -36,17 +36,17 @@ class UserToEvent(db.Model):
     eventID = db.Column(db.Integer, db.ForeignKey('event.id'))
 
     def __repr__(self):
-        return '{}'.format(self.name)
+        return '{}: {}'.format(self.userID, self.eventID)
 
 
-class Blog(db.model):
+class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     body = db.Column(db.String(360), index=True)
     datetime = db.Column(db.DateTime, index=True)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.userID)
 
 
 class DiningHall(db.Model):
